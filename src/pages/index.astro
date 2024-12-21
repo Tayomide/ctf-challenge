@@ -1,0 +1,59 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+
+const password = import.meta.env.SECRET_PASSWORD
+console.log(password)
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+	<Welcome />
+  <label for="str-input">
+    <span>String</span>
+    <input type="text" id="str-input" name="str-input" />
+  </label>
+  <label for="length-input">
+    <span>Length of string</span>
+    <input type="text" id="length-input" name="length-input" />
+  </label>
+
+  <label for="index-input">
+    <span>Get string at index</span>
+    <input type="text" id="index-input" name="index-input" />
+  </label>
+</Layout>
+
+<script>
+  window.addEventListener('load', () => {
+    const strInput = document.getElementById('str-input')
+    const lengthInput = document.getElementById('length-input')
+
+    const str = localStorage.getItem('str') ?? ""
+    const length = localStorage.getItem('length') ?? ""
+    strInput.value = str
+    lengthInput.value = length
+
+
+    const handleStrInputChange = (e) => {
+      localStorage.setItem('str', e.target.value)
+    }
+    const handleLengthInputChange = (e) => {
+      localStorage.setItem('length', e.target.value)
+    }
+    strInput.addEventListener('input', handleStrInputChange)
+    lengthInput.addEventListener('input', handleLengthInputChange)
+  })
+  // fetch('/api/check-flag', { 
+  //   method: 'PUT',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ "str": "Tomiwa", "idx": "100" })
+  // })
+  // .then((res) => res.json())
+  // .then((data) => console.log(data))
+  // .catch((err) => console.log(err))
+</script>

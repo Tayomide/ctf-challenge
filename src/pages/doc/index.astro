@@ -1,0 +1,31 @@
+---
+import Doc from '../../components/Doc.md';
+import Layout from '../../layouts/Layout.astro';
+import Terminal from '../../components/Terminal';
+
+const password = import.meta.env.SECRET_PASSWORD
+console.log(password)
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+  <Doc />
+  <em>If you solve this, I might just let you in on the next step...</em>
+  <Terminal client:load/>
+</Layout>
+
+<style>
+  body{
+    font-family: "Ubuntu Mono", monospace;;
+    background-color: black;
+    color: #bfbfbf;
+    font-size: 0.95em;
+  }
+  em{
+    font-size: 0.9em;
+    padding-bottom: 0.5em;
+    display: block;
+  }
+</style>
