@@ -217,7 +217,6 @@ const Terminal = () => {
           onInput={handleInput}
           onLoad={focusOnInput}
           autoComplete="off"
-          auto
         />
       </label>
     </>
