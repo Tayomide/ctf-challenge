@@ -1,0 +1,55 @@
+---
+import Layout from '../../layouts/Layout.astro'
+import Doc from '../../components/About.md'
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+---
+
+<Layout>
+  <Doc />
+  <div class="bottom">
+    <hr />
+    <div class="bottom-elements">
+      <span class="header">Phantom's Lab</span>
+      <a href="./doc">[ Home ]</a>
+      <a href="https://discord.gg/GRjXpWnX">[ Discord ]</a>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  body {
+    font-family: "JetBrains_Mono", 'Courier New', monospace;
+    background-color: #171717;
+    color: #bfbfbf;
+    font-size: 0.95em;
+    display: flex;
+    flex-direction: column;
+    width: 45em;
+    margin: 0 auto;
+  }
+  hr {
+    width: 100%;
+  }
+  .bottom {
+    flex: 1;
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .bottom .bottom-elements{
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+    align-items: center;
+  }
+
+  .bottom span.header {
+    font-size: 1.9em;
+    font-weight: 400;
+  }
+</style>
