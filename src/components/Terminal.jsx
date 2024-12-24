@@ -175,6 +175,16 @@ const Terminal = () => {
     setInput(e.target.value)
   }
 
+  const handleWebsiteBlur = () => {
+    const label = document.querySelector("label[for='user-input']")
+    label.classList.add("blur")
+  }
+
+  const handleWebsiteFocus = () => {
+    const label = document.querySelector("label[for='user-input']")
+    label.classList.remove("blur")
+  }
+
   useEffect(() => {
     focusOnInput()
 
@@ -245,17 +255,20 @@ const Terminal = () => {
         {logs.map((log, idx) => <TerminalLog {...log} key={idx}/> )}
       </ul>
       <label htmlFor="user-input">
-        <span>{prev}</span>
-        <input
-          type="text"
-          id="user-input"
-          name="user-input"
-          ref={inputRef}
-          value={input}
-          onInput={handleInput}
-          onLoad={focusOnInput}
-          autoComplete="off"
-        />
+        <span id="prev">{prev}</span>
+        <span id="cursor-wrapper">
+          <input
+            type="text"
+            id="user-input"
+            name="user-input"
+            ref={inputRef}
+            value={input}
+            onInput={handleInput}
+            onLoad={focusOnInput}
+            autoComplete="off"
+          />
+          <span id="cursor">{input}</span>
+        </span>
       </label>
     </>
   )
