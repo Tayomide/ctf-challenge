@@ -143,7 +143,9 @@ const Terminal = () => {
             const logCopy = [...prevLogs]
             logCopy.push({
               input: currentInput,
-              inputType: currentInputType
+              inputType: currentInputType,
+              display: "Now for my next trick, I'll tell you the character at any index!",
+              displayType: "info"
             })
             return logCopy
           })
@@ -182,19 +184,18 @@ const Terminal = () => {
 
   const handleWebsiteFocus = () => {
     const label = document.querySelector("label[for='user-input']")
+    focusOnInput()
     label.classList.remove("blur")
   }
 
   useEffect(() => {
     focusOnInput()
 
-    const storedLogs = localStorage.getItem("logs")
-    if(storedLogs){
-      const parsedLogs = JSON.parse(storedLogs)
-
+    const parsedLogs = JSON.parse(localStorage.getItem("logs") || "[]")
+    if(parsedLogs.length){
       let userString = null, userStringLength = null
       for(const {input, inputType, display, displayType} of parsedLogs){
-        if(display === undefined && displayType === undefined && validateInput(inputType, input) === true){
+        if(displayType !== "error" && validateInput(inputType, input) === true){
           if(inputType === "userString")userString = input
           else if(inputType === "userStringLength" && userString !== null)userStringLength = parseInt(input)
         }
@@ -210,11 +211,16 @@ const Terminal = () => {
     }else{
       setInputType("consent")
     }
-    window.addEventListener("click", focusOnInput)
+    const terminal = document.querySelector("div.user-interact")
+    terminal.addEventListener("click", focusOnInput)
     window.addEventListener("keydown", handleKeyDown)
+    window.addEventListener("blur", handleWebsiteBlur)
+    window.addEventListener("focus", handleWebsiteFocus)
     return () => {
-      window.removeEventListener("click", focusOnInput)
+      terminal.removeEventListener("click", focusOnInput)
       window.removeEventListener("keydown", handleKeyDown)
+      window.removeEventListener("blur", handleWebsiteBlur)
+      window.removeEventListener("focus", handleWebsiteFocus)
     }
   }, [])
 
@@ -230,15 +236,15 @@ const Terminal = () => {
         break
       case "userString":
         setPrev("String: ")
-        break;
+        break
       case "userStringLength":
         setPrev("Length: ")
-        break;
+        break
       case "stringIdx":
         setPrev("String Index: ")
         break
       default:
-        break;
+        break
     }
   }, [inputType])
 
