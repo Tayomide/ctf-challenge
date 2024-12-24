@@ -9,6 +9,7 @@ Now, between you and me, I might not be the most organized when it comes to my s
 Anyway, have fun exploring my site! Who knows? Maybe you'll uncover a thing or two about me, my journey, or the interesting ways I’ve been managing my top-secret projects. Just remember: curiosity may have killed the cat, but satisfaction brought it back. 😉
 
 Stay curious,
+<!-- flag{9GJNQGTMJ4H2QR2BR8AOA3S} -->
 Phantom
 
 # About project
@@ -38,7 +39,7 @@ Tayomide
     outline: 0;
     background-color: transparent;
     border: 0;
-    color: #1fe89a;
+    color: var(--accent-attention);
   }
 
   a:hover {
