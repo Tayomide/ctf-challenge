@@ -4,8 +4,19 @@
   padding: 0;
 }
 
+#logs li {
+  padding-bottom: 0.4em;
+}
+
 #logs li p{
   margin: 0;
+  position: relative;
+}
+
+#logs li p.input::before, label[for="user-input"]::before {
+  content: ">";
+  position: absolute;
+  left: -0.95em;
 }
 
 #logs li p span.prev{
@@ -15,17 +26,23 @@
 #logs li p.error{
   /* color: #D56564; */
   color: #C96967;
+}
 
+#logs li p.input ~ p{
+  padding-top: 0.12em;
 }
 
 label[for="user-input"] {
   /* font-family: 'Courier New', Courier, monospace; */
   display: flex;
+  position: relative;
 }
-label[for="user-input"] span{
+
+label[for="user-input"] span#prev{
   margin-right: 8px;
   color: #0fbc79;
 }
+
 label[for="user-input"] input{
   font-family: inherit;
   font-size: inherit;
@@ -36,6 +53,46 @@ label[for="user-input"] input{
   caret-color: #ffffff;
   caret-shape: block;
   padding: 0;
+  width: 11em;
 }
 
+label[for="user-input"] span#cursor {
+  min-width: 0.01em;
+  width: max-content;
+  max-width: 11em;
+  overflow: hidden;
+  color: transparent;
+  animation: blink 1s steps(1) infinite;
+  position: absolute;
+  left: 0;
+  min-height: 1em;
+}
+
+label[for="user-input"] span#cursor-wrapper{
+  position: relative;
+}
+
+label[for="user-input"].blur span#cursor::after {
+  background-color: #ffffff;
+}
+
+label[for="user-input"] span#cursor::after {
+  content: "";
+  display: inline-block;
+  width: 0.05em;
+  background-color: transparent;
+  height: 1.17em;
+  position: absolute;
+  right: 0em;
+  top: 0;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
 /* Error: #b65b5b */
