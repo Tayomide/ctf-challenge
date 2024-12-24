@@ -11,24 +11,87 @@ const isHome = locale === "/doc"
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
 	</head>
-	<body class="jet">
+	<body class="jet light">
     <slot />
 	</body>
 </html>
+
+<script>
+  window.addEventListener("load", () => {
+    const toggle = document.querySelector("body .bottom .switch input")
+    const body = document.querySelector("body")
+    const mode = localStorage.getItem("mode")
+    let currentMode = "dark"
+    if(mode){
+      if(mode === "light")currentMode = "light"
+      else currentMode = "dark"
+    }else{
+      currentMode = "dark"
+    }
+    const updateStyles = () => {
+      if(currentMode === "light"){
+        body?.classList.remove("dark")
+        body?.classList.add("light")
+        localStorage.setItem("mode", "light")
+        toggle.checked = false
+      }else{
+        body?.classList.remove("light")
+        body?.classList.add("dark")
+        localStorage.setItem("mode", "dark")
+        toggle.checked = true
+      }
+    }
+
+    const handleToggle = (e) => {
+      // Dark
+      // e?.preventDefault()
+      if(toggle?.checked){
+        currentMode = "dark"
+      }else{
+        currentMode = "light"
+      }
+      updateStyles()
+    }
+
+    toggle?.addEventListener("click", handleToggle)
+    updateStyles()
+  })
+
+</script>
 
 <style>
   * {
     box-sizing: border-box;
   }
+
+  body.jet{
+    font-family: "JetBrains_Mono", 'Courier New', monospace;
+  }
+
+  body.dark{
+    --bg-color:#171717;
+    --primary: #bfbfbf;
+    --accent: #0fbc79;
+    --accent-attention: #1fe89a;
+    --accent-error: #c96967;
+  }
+  body.light{
+    --bg-color: #ffffff;
+    --primary:#171717;
+    --accent: #485de5;
+    --accent-attention: #001dff;
+    --accent-error: #e04343;
+  }
+
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
 	}
-
-  body.jet{
-    font-family: "JetBrains_Mono", 'Courier New', monospace;
+  body{
+    background-color: var(--bg-color);
+    color: var(--primary);
   }
 
   .user-interact {
@@ -49,13 +112,16 @@ const isHome = locale === "/doc"
     font-size: 1.9em;
     font-weight: 400;
   }
+
+  a{
+    color: var(--accent-attention)
+  }
   .bottom a {
     display: inline-block;
     text-decoration: none;
     outline: 0;
     background-color: transparent;
     border: 0;
-    color: #1fe89a;
   }
   .bottom a:hover{
     text-decoration: underline;
