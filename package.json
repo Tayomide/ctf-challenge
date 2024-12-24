@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "node server.js"
   },
   "dependencies": {
     "@astrojs/node": "^9.0.0",
