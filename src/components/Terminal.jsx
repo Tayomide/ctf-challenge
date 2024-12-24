@@ -81,6 +81,17 @@ const Terminal = () => {
   const handleKeyDown = async (e) => {
     if (e.key === 'Enter') {
       const currentInputType = inputTypeRef.current, currentInput = inputRef.current.value
+      if(currentInput.toLowerCase() === "clear"){
+        setInput("")
+        if(currentInputType === "consent")return
+        setLogs([
+          {
+            "inputType": "consent",
+            "input": "Y"
+          }
+        ])
+        return
+      }
       const validation = validateInput(currentInputType, currentInput)
       setInput("")
       if(validation !== true){
