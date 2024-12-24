@@ -4,4 +4,9 @@ import http from 'http';
 const port = process.env.PORT || 3000; // Render provides PORT environment variable
 
 // Create an HTTP server to handle requests
-http.createServer(handler);
+const server = http.createServer(handler);
+
+// Start listening on the specified port
+server.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
