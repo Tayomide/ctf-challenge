@@ -29,6 +29,12 @@ const Terminal = () => {
 
   const validateInput = (inputType, input) => {
     switch(inputType){
+      case "consent":
+        if(input === "N" || input === "n"){
+          window.location.href = "https://www.google.com/search?q=cute+cats&udm=2"
+          return false
+        }
+        return true
       case "userString":
         if(input.length === 0){
           return "Looks like you forgot your string, I can't read your mind you know"
@@ -78,6 +84,7 @@ const Terminal = () => {
       const validation = validateInput(currentInputType, currentInput)
       setInput("")
       if(validation !== true){
+        if(currentInputType === "consent")return
         setLogs(prevLogs => {
           const logCopy = [...prevLogs]
           logCopy.push({
@@ -91,6 +98,21 @@ const Terminal = () => {
         return
       }
       switch(currentInputType){
+        case "consent":
+          setInputType("userString")
+          setLogs(prevLogs => {
+            const logCopy = [...prevLogs]
+            logCopy.push({
+              input: currentInput,
+              inputType: currentInputType
+            })
+            if(currentInput !== "Y"){
+              logCopy.at(-1)["display"] = "...I'll take that" // Maybe a smirk here?
+              logCopy.at(-1)["displayType"] = "info" // Maybe a smirk here?
+            }
+            return logCopy
+          })
+          break
         case "userString":
           setUserString(currentInput)
           setInputType("userStringLength")
@@ -164,6 +186,8 @@ const Terminal = () => {
       setUserString(userString)
       setUserStringLength(userStringLength)
       setLogs(parsedLogs)
+    }else{
+      setInputType("consent")
     }
     window.addEventListener("click", focusOnInput)
     window.addEventListener("keydown", handleKeyDown)
@@ -180,6 +204,9 @@ const Terminal = () => {
   useEffect(() => {
     inputTypeRef.current = inputType
     switch (inputType) {
+      case "consent":
+        setPrev("Enter (Y/N): ")
+        break
       case "userString":
         setPrev("String: ")
         break;
