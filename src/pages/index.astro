@@ -1,59 +1,120 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import Doc from '../components/Doc.md';
 import Layout from '../layouts/Layout.astro';
-
-const password = import.meta.env.SECRET_PASSWORD
-console.log(password)
+import Terminal from '../components/Terminal';
+import Toggle from '../components/toggle.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
-  <label for="str-input">
-    <span>String</span>
-    <input type="text" id="str-input" name="str-input" />
-  </label>
-  <label for="length-input">
-    <span>Length of string</span>
-    <input type="text" id="length-input" name="length-input" />
-  </label>
-
-  <label for="index-input">
-    <span>Get string at index</span>
-    <input type="text" id="index-input" name="index-input" />
-  </label>
+  <div class="user-interact">
+    <Doc />
+    <em>If you solve this, I might just let you in on the next step...</em>
+    <Terminal client:load/>
+  </div>
+  <hr />
+  <div class="bottom">
+    <div class="top-half">
+      <span class="header">Phantom's Lab</span>
+      <a href="./about">[ About ]</a>
+      <a href="https://discord.gg/GRjXpWnX" target="_blank" rel="noopener noreferrer">[ Discord ]</a>
+    </div>
+    <div class="bottom-half">
+      <em class="instruction">Type <code>Clear</code> to clear the terminal </em>
+      <Toggle />
+    </div>
+  </div>
 </Layout>
 
-<script>
-  window.addEventListener('load', () => {
-    const strInput = document.getElementById('str-input')
-    const lengthInput = document.getElementById('length-input')
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-size: 0.95em;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  em {
+    font-size: 0.9em;
+    padding-bottom: 0.5em;
+    display: block;
+  }
+  .user-interact {
+    height: calc(100vh - 3em);
+    overflow-y: auto;
+    padding: 0 0 0 1.2em;
+  }
+  hr {
+    width: 100%;
+  }
+  .bottom {
+    height: 3em;
+    padding: 0 1.2em 0 1.2em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+  }
+  .bottom span.header {
+    font-size: 1.9em;
+    font-weight: 400;
+  }
+  .bottom a {
+    display: inline-block;
+    text-decoration: none;
+    outline: 0;
+    background-color: transparent;
+    border: 0;
+    color: var(--accent-attention);
+  }
+  .bottom a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  .bottom em.instruction {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .bottom em.instruction code{
+    padding: 0 0.5em;
+  }
+  .bottom div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1em;
+  }
+  .bottom div.bottom-half{
+    flex: 1;
+    gap: 1em;
+  }
 
-    const str = localStorage.getItem('str') ?? ""
-    const length = localStorage.getItem('length') ?? ""
-    strInput.value = str
-    lengthInput.value = length
-
-
-    const handleStrInputChange = (e) => {
-      localStorage.setItem('str', e.target.value)
+  @media screen and (max-width: 50em) {
+    .bottom{
+      flex-direction: column;
+      height: 6em;
+      gap: 0;
     }
-    const handleLengthInputChange = (e) => {
-      localStorage.setItem('length', e.target.value)
+    .bottom div{
+      width: 100%;
     }
-    strInput.addEventListener('input', handleStrInputChange)
-    lengthInput.addEventListener('input', handleLengthInputChange)
-  })
-  // fetch('/api/check-flag', { 
-  //   method: 'PUT',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ "str": "Tomiwa", "idx": "100" })
-  // })
-  // .then((res) => res.json())
-  // .then((data) => console.log(data))
-  // .catch((err) => console.log(err))
-</script>
+  }
+  
+  @media screen and (max-width: 30em) {
+    .bottom div{
+      gap: 0;
+    }
+    .bottom span.header {
+      font-size: 1.3em;
+      font-weight: 400;
+    }
+  }
+</style>

@@ -50,7 +50,8 @@ export async function PUT ({ request }){
         )
       }
       const str = data.str, idx = Number(data.idx)
-      const flag = import.meta.env.SECRET_FLAG ?? process.env.SECRET_FLAG
+      const flag = import.meta.env.SECRET_FLAG || process?.env?.SECRET_FLAG
+
       const newData = str + flag
       if(idx < 0){
         return new Response(
@@ -72,7 +73,7 @@ export async function PUT ({ request }){
         return new Response(
           JSON.stringify(
             {
-              "response": "You caused an overflow!"
+              "response": "You caused an overflow (╯°□°）╯︵ ┻━┻"
             }
           ),
           {
@@ -88,7 +89,7 @@ export async function PUT ({ request }){
         return new Response(
           JSON.stringify(
             {
-              "response": "WHAT DID YOU DO? YOU JUST CAUSED AN OVERFLOW! ...How?"
+              "response": "WHAT DID YOU DO? YOU JUST CAUSED AN OVERFLOW! ...How (。_。)"
             }
           ),
           {
@@ -129,7 +130,6 @@ export async function PUT ({ request }){
       }
     )
   }catch(err){
-    console.log(err)
     // Return no body was sent
     return new Response(
       JSON.stringify(

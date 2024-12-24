@@ -11,7 +11,7 @@ import "../styles/terminal.css"
 
 const Terminal = () => {
   const [logs, setLogs] = useState([])
-  const [inputType, setInputType] = useState("userString")
+  const [inputType, setInputType] = useState("consent")
   const [userString, setUserString] = useState(null)
   const [userStringLength, setUserStringLength] = useState(null)
   const [input, setInput] = useState("")
@@ -72,9 +72,7 @@ const Terminal = () => {
       result["response"] = data?.response
     }catch{
       result["status"] = "error"
-      console.log("Catch is working here too")
     }
-    console.log("Result: ", result)
     return result
   }
 
@@ -83,6 +81,9 @@ const Terminal = () => {
       const currentInputType = inputTypeRef.current, currentInput = inputRef.current.value
       if(currentInput.toLowerCase() === "clear"){
         setInput("")
+        setInputType("userString")
+        setUserString(null)
+        setUserStringLength(null)
         if(currentInputType === "consent")return
         setLogs([
           {
@@ -163,7 +164,6 @@ const Terminal = () => {
             })
             return logCopy
           })
-          console.log("Result: ",result)
           break
         default:
           break
@@ -186,6 +186,13 @@ const Terminal = () => {
     const label = document.querySelector("label[for='user-input']")
     focusOnInput()
     label.classList.remove("blur")
+  }
+
+  const scrollDown = () => {
+    const objDiv = document.querySelector(".user-interact")
+    if(objDiv){
+      objDiv.scrollTop = objDiv.scrollHeight
+    }
   }
 
   useEffect(() => {
@@ -226,6 +233,7 @@ const Terminal = () => {
 
   useEffect(() => {
     localStorage.setItem("logs", JSON.stringify(logs))
+    scrollDown()
   }, [logs])
   
   useEffect(() => {

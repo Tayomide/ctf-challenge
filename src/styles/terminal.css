@@ -20,12 +20,11 @@
 }
 
 #logs li p span.prev{
-  color: #0fbc79;
+  color: var(--accent);
 }
 
 #logs li p.error{
-  /* color: #D56564; */
-  color: #C96967;
+  color: var(--accent-error);
 }
 
 #logs li p.input ~ p{
@@ -40,7 +39,7 @@ label[for="user-input"] {
 
 label[for="user-input"] span#prev{
   margin-right: 8px;
-  color: #0fbc79;
+  color: var(--accent);
 }
 
 label[for="user-input"] input{
@@ -49,11 +48,11 @@ label[for="user-input"] input{
   border: 0;
   outline: 0;
   background-color: transparent;
-  color: #bfbfbf;
-  caret-color: #ffffff;
+  caret-color: var(--primary);
   caret-shape: block;
   padding: 0;
   width: 11em;
+  color: var(--primary)
 }
 
 label[for="user-input"] span#cursor {
@@ -73,7 +72,7 @@ label[for="user-input"] span#cursor-wrapper{
 }
 
 label[for="user-input"].blur span#cursor::after {
-  background-color: #ffffff;
+  background-color: var(--primary);
 }
 
 label[for="user-input"] span#cursor::after {
@@ -95,4 +94,3 @@ label[for="user-input"] span#cursor::after {
     opacity: 0;
   }
 }
-/* Error: #b65b5b */
