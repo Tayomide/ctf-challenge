@@ -4,21 +4,24 @@
 const TerminalLog = ({inputType, input, displayType, display }) => {
   let prev = ""
   switch (inputType) {
+    case "consent":
+      prev = "Enter (Y/N): "
+      break
     case "userString":
       prev = "String: "
-      break;
+      break
     case "userStringLength":
       prev = "Length: "
-      break;
+      break
     case "stringIdx":
       prev = "String Index: "
       break
     default:
-      break;
+      break
   }
 
   return <li>
-    <p>
+    <p className="input">
       <span className="prev">{prev}</span>
       <span className="input">{input}</span>
     </p>
