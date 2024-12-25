@@ -1,4 +1,4 @@
-# Welcome to Phantom's Lab!
+# Welcome to Ghostkey's Lab!
 
 Hey there! Thanks for visiting my humble little corner of the internet...
 
