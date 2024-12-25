@@ -1,8 +1,8 @@
-# About Phantom
+# About Ghostkey
 
-## Welcome to Phantom's World! 🕵️‍♂️✨
+## Welcome to Ghostkey's World! 🕵️‍♂️✨
 
-Hi there! I'm Phantom, your friendly (but slightly mischievous) web developer in training. I’m all about exploring the vast, mysterious realms of the internet—one line of buggy code at a time. 🚀
+Hi there! I'm Ghostkey, your friendly (but slightly mischievous) web developer in training. I’m all about exploring the vast, mysterious realms of the internet—one line of buggy code at a time. 🚀
 
 Now, between you and me, I might not be the most organized when it comes to my secrets... or my environment variables. 🤷‍♂️ But hey, learning is all about making mistakes, right? Just don’t go poking around too much—you never know what you might stumble across. (Not that there's anything important lying around... probably. 😅)
 
@@ -10,7 +10,7 @@ Anyway, have fun exploring my site! Who knows? Maybe you'll uncover a thing or t
 
 Stay curious,
 <!-- flag{9GJNQGTMJ4H2QR2BR8AOA3S} -->
-Phantom
+Ghostkey
 
 # About project
 First off, yes, that was AI generated. 😶‍🌫️

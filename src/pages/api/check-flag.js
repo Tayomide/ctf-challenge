@@ -134,7 +134,7 @@ export async function PUT ({ request }){
     return new Response(
       JSON.stringify(
         {
-          "response": "Phantom is a programmer, not omniscient, maybe give him some data?"
+          "response": "Ghostkey is a programmer, not omniscient, maybe give him some data?"
         }
       ),
       {
